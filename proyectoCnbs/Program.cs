@@ -1,4 +1,12 @@
+using Microsoft.EntityFrameworkCore;
+using proyectoCnbs.Data;
+using proyectoCnbs.Services;
+
 var builder = WebApplication.CreateBuilder(args);
+
+//Configuramos la conexión a sql ser local db MSSQLLOCAL
+builder.Services.AddDbContext<ApplicationDbContext>(opciones =>
+            opciones.UseSqlServer(builder.Configuration.GetConnectionString("ConexionSql")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -7,6 +15,9 @@ builder.Services.AddHttpClient();
 
 
 builder.Services.AddTransient<ApiService>();
+
+// Registrar el servicio de XmlProcessor
+builder.Services.AddTransient<XmlProcessor>();
 
 
 var app = builder.Build();
