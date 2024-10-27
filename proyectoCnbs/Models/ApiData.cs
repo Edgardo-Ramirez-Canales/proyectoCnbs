@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace proyectoCnbs.Models
@@ -16,7 +17,7 @@ namespace proyectoCnbs.Models
         public string FechaHoraTrn { get; set; }
         
         [Required(ErrorMessage = "El campo es obligatorio")]
-        public string FechaAConsultar { get; set; }
+        public DateTime FechaAConsultar { get; set; }
 
         [Required(ErrorMessage = "El campo es obligatorio")]
         public int CuentaDeclaraciones { get; set; }
@@ -24,6 +25,7 @@ namespace proyectoCnbs.Models
         //public string DatosComprimidos { get; set; }
 
         [Required(ErrorMessage = "El campo es obligatorio")]
+        [Column(TypeName = "nvarchar(max)")] // Esto permite almacenar un tamaño máximo
         public string JsonDatos { get; set; }
 
 

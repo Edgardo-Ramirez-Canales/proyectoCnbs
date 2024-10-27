@@ -23,5 +23,19 @@ namespace proyectoCnbs.Data
                 );
             }
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<ApiData>()
+                .HasIndex(a => a.Id)
+                .HasDatabaseName("IX_Id");
+
+            modelBuilder.Entity<ApiData>()
+                .HasIndex(a => a.FechaAConsultar)
+                .HasDatabaseName("IX_FechaAConsultar");
+
+        }
     }
 }
