@@ -3,29 +3,35 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - proyectoCnbs</title>
+    <title>@ViewData["Title"] Prueba Tecnica CNBS</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/proyectoCnbs.styles.css" asp-append-version="true" />
+     <link rel="stylesheet" href="https://unpkg.com/primeflex/primeflex.css">
+    <link rel="stylesheet" href="https://unpkg.com/primeflex/themes/saga-blue.css">
+    <script src="https://kit.fontawesome.com/b3f17f1dac.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">proyectoCnbs</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
+    <!-- HEADER -->
+    <header class="flex w-full fixed top-0 z-1">
+        <nav class="flex justify-content-between w-full navbar">
+           
+            <input type="checkbox" aria-label="Checkbox para mostrar y quitar hamburger menu"
+                   class="checkbox xl:hidden">
+            <div class="hamburger__lines">
+                <span class="line line1"></span>
+                <span class="line line2"></span>
+                <span class="line line3"></span>
+            </div>
+            <div class="header__info flex align-items-center gap-3">
+                <ul class="flex flex-column xl:flex-row list-none">
+                    <li onclick="scrollToSection('about')">Herramientas</li>
+                    <li onclick="scrollToSection('services')">Ejecuta Prueba Tecnica </li>
+
+                </ul>
+                <div class="hireMe__button pt-4">
+                    <a href="mailTo:ramirezedgardo92@gmail.com" aria-label="Enviar mensaje al correo"
+                       class="cursor-pointer no-underline border-round-lg text-xl">Contactame</a>
                 </div>
             </div>
         </nav>
@@ -36,11 +42,32 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - proyectoCnbs - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <!--FOOTER -->
+    <!-- Footer fijo -->
+    <footer id="contact" class="flex flex-row justify-content-around pt-1 text-center">
+        <div class="contact-item flex flex-column align-items-center">
+            <h4>Contacto:</h4>
+        </div>
+        <div class="contact-item flex flex-column align-items-center">
+            <div class="phone__number flex align-items-center gap-2">
+                <i class="fa-solid fa-phone"></i>
+                <p>+504 32299786</p>
+            </div>
+        </div>
+        <div class="contact-item flex flex-column align-items-center">
+            <div class="email flex align-items-center gap-2">
+                <i class="fa-solid fa-envelope"></i>
+                <p>ramirezedgardo92@gmail.com</p>
+            </div>
+        </div>
+        <div class="contact-item flex flex-column align-items-center">
+            <a href="mailTo:ramirezedgardo92@gmail.com" class="cursor-pointer text-center no-underline border-round-lg mt-1">
+                <span><i class="fa-solid fa-message"></i></span> Escríbeme
+            </a>
         </div>
     </footer>
+
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
