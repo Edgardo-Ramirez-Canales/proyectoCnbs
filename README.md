@@ -12,7 +12,7 @@
 -  Ejecutar el comando: update-database (crea la base de datos)
 -  Ejecutar la aplicacion normalmente tomar en cuenta que se utilizo visual studio 2022
 
-##Evidencias
+## Evidencias
 ![image](https://github.com/user-attachments/assets/853b8dbf-36db-4a59-98d8-f1b5556621cc)
 ![image](https://github.com/user-attachments/assets/ebfa86ed-4003-4945-bd8d-f25f9ec68207)
 ![image](https://github.com/user-attachments/assets/261bd297-8d61-46a6-ae52-770ecfce8d6d)
