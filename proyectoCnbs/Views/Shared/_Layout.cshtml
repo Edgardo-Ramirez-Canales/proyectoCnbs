@@ -24,11 +24,10 @@
                 <span class="line line3"></span>
             </div>
             <div class="header__info flex align-items-center gap-3">
-                <ul class="flex flex-column xl:flex-row list-none">
-                    <li onclick="scrollToSection('about')">Herramientas</li>
-                    <li onclick="scrollToSection('services')">Ejecuta Prueba Tecnica </li>
-
-                </ul>
+                
+                <div class="hireMe__button pt-4">
+                    <a href="#prueba-tecnica" class="cursor-pointer no-underline border-round-lg text-xl">Ejecuta Prueba Tecnica</a>
+                </div>
                 <div class="hireMe__button pt-4">
                     <a href="mailTo:ramirezedgardo92@gmail.com" aria-label="Enviar mensaje al correo"
                        class="cursor-pointer no-underline border-round-lg text-xl">Contactame</a>
@@ -36,8 +35,8 @@
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+    <div >
+        <main role="main" >
             @RenderBody()
         </main>
     </div>

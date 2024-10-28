@@ -23,13 +23,17 @@ namespace proyectoCnbs.Models
         public string Iddtextr { get; set; }
         public string Nddtimmioe { get; set; }
         public string Dddtoficia { get; set; }
+        public string Iddt { get; set; }
+        public string Cddteta { get; set; }
     }
 
     public class Liquidacion
     {
         public string Iliq { get; set; }
         public string Cliqdop { get; set; }
-    
+
+        public string Cliqeta { get; set; }
+
     }
 
     public class LiquidacionArticulo

@@ -1,195 +1,215 @@
 ﻿@model IEnumerable<proyectoCnbs.Models.ApiData>
 
-<div class="container">
-        <section id="home"
-            class="home__page flex align-items-center justify-content-center xl\:justify-content-between grid grid-nogutter gap-4">
+
+        <section id="home" class="home__page flex align-items-center justify-content-center grid grid-nogutter gap-2">
             <div class="left__content col-10 xl:col-6">
-                <div class="message__bubble triangle mb-4 md:mb-2">
+                <div class="message__bubble triangle mb-2">
                     <div class="message__text p-2 sm:p-3 text-center">
                         <p>Hola, Yo soy</p>
                     </div>
                 </div>
-                <h1 class="text-6xl ">Edgardo Adalid Ramirez</h1>
-                <p class="text-gray-500">
-                   Te presento mi prueba tecnica:
-                </p>
-    
+                <p class="text-5xl">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Edgardo Adalid Ramirez</p>
+        <p class="text-xl ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bienvenido a mi prueba tecnica</p>
+                <h4 class="text-3xl mt-7">Tecnologias utilizadas:</h4>
+
+                <div class="knowledge flex flex-column gap-2 mt-2">
+                     <p>C# 100%</p>
+                     <div class="progress__bar progress__wordpress">
+                         <span></span>
+                     </div>
+                     <p>HTML 75%</p>
+                     <div class="progress__bar progress__html">
+                    <span></span>
+                    </div>
+                </div>
             </div>
+
             <div class="right__content col-9 sm:col-6 xl:col-5">
                 <img src="./assets/cnbs.png" alt="Foto perfil" width="100" height="100">
             </div>
         </section>
-        <!--ABOUT ME-->
-    <section id="about" class="about__me">
-        <div class="aboutMe__info col-12 md:col-6 ">
-                    <h1 class="text-3xl md:text-5xl">Tecnologias utilizadas:</h1>
-                    
-                    <div class="knowledge flex flex-column gap-3 mt-5">
-                        <p>C# 100%</p>
-                        <div class="progress__bar progress__wordpress">
-                            <span></span>
+       
+
+<section class="section-bg p-3 sm:p-5">
+    <div class="container">
+        <h1 id="prueba-tecnica" class="text-3xl md:text-5xl">PRUEBA TECNICA:</h1>
+        <p>Este proyecto consume un servicio REST para obtener datos específicos de "declaraciones". La información obtenida se guarda en una base de datos,  SQL Server. Además permite buscar declaraciones por medio de dos parámetros: fechaConsultar (ej. "2021-06-20"), Nddtimmioe (ej. "07039012462860").</p>
+
+
+        <div class="card">
+            <div class="card-header">
+                <div class="search-form">
+                    <form asp-action="BuscarRegistro" method="post" class="flex items-center gap-4">
+                        <div class="form-group">
+                            <label for="fechaConsultar">Fecha a consultar (yyyy-MM-dd):</label>
+                            <input type="text" id="fechaConsultar" name="fechaConsultar" class="form-control" placeholder="Fecha en formato yyyy-MM-dd" required />
                         </div>
-                        <p>HTML 75%</p>
-                        <div class="progress__bar progress__html">
-                            <span></span>
-                        </div>                        
-                    </div>              
+
+                        <div class="form-group">
+                            <label for="Nddtimmioe">Nddtimmioe:</label>
+                            <input type="text" id="Nddtimmioe" name="Nddtimmioe" class="form-control" placeholder="Nddtimmioe" required />
+                        </div>
+
+                        <button type="submit" class="btn-primary">Buscar Declaracion</button>
+                    </form>
                 </div>
-        </section>
-</div>
+            </div>
+            <div class="table-wrapper">
+                <table class="table">
+                    <div class="text-center">
+                       
+                        <!-- Mensaje de resultado -->
+                        <p>@ViewBag.Message</p>
 
-<div class="text-center">
-    <h1 class="text-3xl md:text-5xl">PRUEBA TECNICA:</h1>
-    <p>Este proyecto consume un servicio REST para obtener datos específicos de "declaraciones". La información obtenida se guarda en una base de datos,  SQL Server. Además permite buscar declaraciones por medio de dos parámetros: fechaConsultar (ej. "2021-06-20"),Nddtimmioe: el identificador de la declaración (ej. "05019007084332").</p>
+                        <!-- Muestra de resultados si existen registros de ApiData -->
+                        @if (Model != null && Model.Any())
+                        {
+                            <h4>Resultado de la búsqueda:</h4>
+                            <table class="table table-bordered">
+                                <thead class="table-header">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Fecha A Consultar</th>
+                                        <th>Nro Transaccion</th>
+                                        <th>Fecha Hora Trn</th>                                     
+                                        <th>Cuenta Declaraciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr class="table-row">
+                                            <td>@item.Id</td>
+                                            <td>@item.FechaAConsultar.ToString("yyyy-MM-dd")</td>
+                                            <td>@item.NroTransaccion</td>
+                                            <td>@item.FechaHoraTrn</td>                                         
+                                            <td>@item.CuentaDeclaraciones</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        }
+                        else
+                        {
+                            <p>No se encontraron registros.</p>
+                        }
 
-    <!-- Formulario para consultar por fecha -->
-    <form asp-action="BuscarRegistro" method="post">
-        <div class="form-group">
-            <label for="fechaConsultar">Fecha a consultar (yyyy-MM-dd):</label>
-            <input type="text" id="fechaConsultar" name="fechaConsultar" class="form-control" required />
+                        <!-- Mostrar resultado del procesamiento manual -->
+                        @if (ViewBag.ResultadoProcesado != null)
+                        {
+                            var declaraciones = ViewBag.ResultadoProcesado as List<proyectoCnbs.Models.DeclaracionModels>;
+
+                            <div class="mt-4">
+                                @{
+                                    var contador = 1; // Iniciar contador en 1
+                                }
+
+
+                                <!-- Iterar por cada declaración encontrada -->
+                                @foreach (var declaracion in declaraciones)
+                                {
+                                    <!-- Tabla para datos de DDT -->
+                                   <h3 class="text-center bg-orange">@contador - Detalles de DDT</h3>                                 
+                                    contador++;
+                                     
+                                    <table class="table table-striped">
+                                        <thead class="table-header">
+                                            <tr>
+                                                <th class="bg-orangeBajo">Nddtimmioe</th>
+                                                <th class="bg-blue">Iddt</th>
+                                                <th>Iddtextr</th>
+                                                <th>Cddteta</th>
+                                                <th>Dddtoficia</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="table-row">
+                                                <td class="bg-orangeBajo">@declaracion.DDT.Nddtimmioe</td>
+                                                <td class="bg-blue">@declaracion.DDT.Iddt</td>
+                                                <td>@declaracion.DDT.Iddtextr</td>
+                                                <td>@declaracion.DDT.Cddteta</td>
+                                                <td>@declaracion.DDT.Dddtoficia</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <!-- Tabla para datos de ART -->
+                                    <h6>Detalles de Artículos (ART)</h6>
+                                    <table class="table table-striped">
+                                        <thead class="table-header">
+                                            <tr>
+                                                <th class="bg-blue">Iddt</th>
+                                                <th>Nart</th>
+                                                <th>Cartdesc</th>
+                                                <th>Martfob</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var articulo in declaracion.ART)
+                                            {
+                                                <tr class="table-row">
+                                                    <td class="bg-blue">@articulo.Iddt</td>
+                                                    <td>@articulo.Nart</td>
+                                                    <td>@articulo.Cartdesc</td>
+                                                    <td>@articulo.Martfob</td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+
+                                    <!-- Tabla para datos de LIQ -->
+                                    <h6>Detalles de Liquidación (LIQ)</h6>
+                                    <table class="table table-striped">
+                                        <thead class="table-header">
+                                            <tr>
+                                                <th class="bg-blue">Iliq</th>
+                                                <th>Cliqdop</th>
+                                                <th>Cliqeta</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="table-row">
+                                                <td class="bg-blue">@declaracion.LIQ.Iliq</td>
+                                                <td>@declaracion.LIQ.Cliqdop</td>
+                                                <td>@declaracion.LIQ.Cliqeta</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <!-- Tabla para datos de LQA -->
+                                    <h6>Detalles de Liquidaciones de Artículos (LQA)</h6>
+                                    <table class="table table-striped">
+                                        <thead class="table-header">
+                                            <tr>
+                                                <th class="bg-blue">Iliq</th>
+                                                <th>Nart</th>
+                                                <th>Clqatax</th>
+                                                <th>Mlqa</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var liquidacionArticulo in declaracion.LQA)
+                                            {
+                                                <tr class="table-row">
+                                                    <td class="bg-blue">@liquidacionArticulo.Iliq</td>
+                                                    <td>@liquidacionArticulo.Nart</td>
+                                                    <td>@liquidacionArticulo.Clqatax</td>
+                                                    <td>@liquidacionArticulo.Mlqa</td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                }
+                            </div>
+                        }
+                    </div>
+                   
+                </table>
+            </div>
         </div>
-
-        <div class="form-group">
-            <label for="Nddtimmioe">Nddtimmioe:</label>
-            <input type="text" id="Nddtimmioe" name="Nddtimmioe" class="form-control" required />
-        </div>
-
-        <button type="submit" class="btn btn-primary">Buscar</button>
-    </form>
-
+    </div>
     
+</section>
 
-    <!-- Mensaje de resultado -->
-    <p>@ViewBag.Message</p>
 
-    <!-- Muestra de resultados si existen registros de ApiData -->
-    @if (Model != null && Model.Any())
-    {
-        <h2>Resultado de la búsqueda en ApiData:</h2>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>NroTransaccion</th>
-                    <th>FechaHoraTrn</th>
-                    <th>FechaAConsultar</th>
-                    <th>CuentaDeclaraciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>@item.Id</td>
-                        <td>@item.NroTransaccion</td>
-                        <td>@item.FechaHoraTrn</td>
-                        <td>@item.FechaAConsultar.ToString("yyyy-MM-dd")</td>
-                        <td>@item.CuentaDeclaraciones</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    }
-    else
-    {
-        <p>No se encontraron registros.</p>
-    }
 
-    <!-- Mostrar resultado del procesamiento manual -->
-    @if (ViewBag.ResultadoProcesado != null)
-    {
-        var declaraciones = ViewBag.ResultadoProcesado as List<proyectoCnbs.Models.DeclaracionModels>;
-
-        <div class="alert alert-info mt-4">
-            <h5>Resultado Procesado</h5>
-
-            <!-- Iterar por cada declaración encontrada -->
-            @foreach (var declaracion in declaraciones)
-            {
-                <!-- Tabla para datos de DDT -->
-                <h6>Detalles de DDT</h6>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Iddtextr</th>
-                            <th>Nddtimmioe</th>
-                            <th>Dddtoficia</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>@declaracion.DDT.Iddtextr</td>
-                            <td>@declaracion.DDT.Nddtimmioe</td>
-                            <td>@declaracion.DDT.Dddtoficia</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <!-- Tabla para datos de ART -->
-                <h6>Detalles de Artículos (ART)</h6>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Iddt</th>
-                            <th>Nart</th>
-                            <th>Cartdesc</th>
-                            <th>Martfob</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var articulo in declaracion.ART)
-                        {
-                            <tr>
-                                <td>@articulo.Iddt</td>
-                                <td>@articulo.Nart</td>
-                                <td>@articulo.Cartdesc</td>
-                                <td>@articulo.Martfob</td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-
-                <!-- Tabla para datos de LIQ -->
-                <h6>Detalles de Liquidación (LIQ)</h6>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Iliq</th>
-                            <th>Cliqdop</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>@declaracion.LIQ.Iliq</td>
-                            <td>@declaracion.LIQ.Cliqdop</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <!-- Tabla para datos de LQA -->
-                <h6>Detalles de Liquidaciones de Artículos (LQA)</h6>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Iliq</th>
-                            <th>Nart</th>
-                            <th>Clqatax</th>
-                            <th>Mlqa</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var liquidacionArticulo in declaracion.LQA)
-                        {
-                            <tr>
-                                <td>@liquidacionArticulo.Iliq</td>
-                                <td>@liquidacionArticulo.Nart</td>
-                                <td>@liquidacionArticulo.Clqatax</td>
-                                <td>@liquidacionArticulo.Mlqa</td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            }
-        </div>
-    }
-</div>
