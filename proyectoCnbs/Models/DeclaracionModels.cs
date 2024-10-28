@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿
 namespace proyectoCnbs.Models
 {
     public class DeclaracionModels

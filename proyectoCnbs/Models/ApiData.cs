@@ -25,7 +25,7 @@ namespace proyectoCnbs.Models
         //public string DatosComprimidos { get; set; }
 
         [Required(ErrorMessage = "El campo es obligatorio")]
-        [Column(TypeName = "nvarchar(max)")] // Esto permite almacenar un tamaño máximo
+        [Column(TypeName = "nvarchar(max)")] 
         public string JsonDatos { get; set; }
 
 

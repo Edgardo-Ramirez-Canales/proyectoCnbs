@@ -10,7 +10,6 @@ namespace proyectoCnbs.Data
         
         }
 
-        //AGREGAR MODELO (Cada modelo corresponde a una tabla en la BD)
         public DbSet<ApiData> ApiData { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

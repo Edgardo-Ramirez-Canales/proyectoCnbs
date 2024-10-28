@@ -1,10 +1,7 @@
-﻿using System;
-using System.IO;
-using System.Text;
+﻿using System.Text;
 using System.Xml.Serialization;
 using System.IO.Compression;
-using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+
 
 namespace proyectoCnbs.Services
 {
@@ -12,12 +9,11 @@ namespace proyectoCnbs.Services
     {
         private readonly ILogger<XmlProcessor> _logger;
 
-        // Constructor para inyectar el logger
         public XmlProcessor(ILogger<XmlProcessor> logger)
         {
             _logger = logger;
         }
-        // Método para deserializar el XML en un objeto Declaracion
+        
         public Declaracion? DeserializeXml(string xmlData)
         {
            // _logger.LogInformation($"XML Data Received: {xmlData}");
@@ -57,6 +53,25 @@ namespace proyectoCnbs.Services
                 throw ex;
             }
 
+        }
+
+        // Comprime una cadena de texto   
+        private static string Compress(string text)
+        {
+            byte[] buffer = Encoding.UTF8.GetBytes(text);
+            MemoryStream ms = new MemoryStream();
+            using (GZipStream zip = new GZipStream(ms, CompressionMode.Compress, true))
+            {
+                zip.Write(buffer, 0, buffer.Length);
+            }
+
+            ms.Position = 0;
+            MemoryStream outStream = new MemoryStream();
+
+            byte[] compressed = new byte[ms.Length];
+            ms.Read(compressed, 0, compressed.Length);
+
+            return Convert.ToBase64String(compressed);
         }
     }
 }

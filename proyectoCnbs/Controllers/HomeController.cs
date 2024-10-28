@@ -23,8 +23,7 @@ public class HomeController : Controller
     [HttpGet]
     public IActionResult Index()
     {
-        // Cargar la vista sin datos específicos inicialmente
-        ViewBag.Message = "Por favor, especifica una fecha y presiona 'Buscar' para consultar.";
+        ViewBag.Message = "Por favor, especifica una fecha y presiona 'Buscar Declaracion' para consultar.";
         return View();
     }
 
@@ -41,7 +40,7 @@ public class HomeController : Controller
             return View("Index", Enumerable.Empty<ApiData>());
         }
 
-        // Llamar a GetApiData para obtener el registro específico
+        // Llama GetApiData 
         var resultado = await GetApiData(fechaConsultar) as OkObjectResult;
         var apiData = resultado?.Value as ApiData;
 
@@ -63,12 +62,10 @@ public class HomeController : Controller
         {
             
             var datosProcesados = JsonSerializer.Deserialize<List<DeclaracionModels>>(datosProcesadosJson);
-
-
             ViewBag.ResultadoProcesado = datosProcesados;
         }
 
-        // Devuelve una lista con el único resultado para que la vista funcione sin cambios significativos
+        // Devuelve lista 
         return View("Index", new List<ApiData> { apiData });
     }
 
@@ -88,8 +85,8 @@ public class HomeController : Controller
             var totalDDTConNddtimmioe = declaraciones.Count(d => d.DDT != null && d.DDT.Nddtimmioe != null);
             var totalCoincidencias = declaraciones.Count(d => d.DDT != null && d.DDT.Nddtimmioe == Nddtimmioe);
 
-            _logger.LogInformation($"Total de declaraciones con DDT y Nddtimmioe no nulo: {totalDDTConNddtimmioe}");
-            _logger.LogInformation($"Total de coincidencias exactas con Nddtimmioe '{Nddtimmioe}': {totalCoincidencias}");
+            //_logger.LogInformation($"Total de declaraciones con DDT y Nddtimmioe no nulo: {totalDDTConNddtimmioe}");
+            //_logger.LogInformation($"Total de coincidencias exactas con Nddtimmioe '{Nddtimmioe}': {totalCoincidencias}");
 
             var valoresNddtimmioe = declaraciones
                          .Where(d => d.DDT != null && d.DDT.Nddtimmioe != null)
@@ -104,7 +101,6 @@ public class HomeController : Controller
                 return null;
             }
 
-           
             var declaracionesFiltradas = declaraciones
                 .Where(d => d.DDT != null && d.DDT.Nddtimmioe == Nddtimmioe)
                 .ToList();
@@ -117,7 +113,6 @@ public class HomeController : Controller
 
             var resultadoJson = JsonSerializer.Serialize(declaracionesFiltradas, new JsonSerializerOptions { WriteIndented = true });
             //_logger.LogInformation($"JSON final procesado: {resultadoJson}");
-
             return resultadoJson;
         }
         catch (Exception ex)
@@ -131,25 +126,19 @@ public class HomeController : Controller
     {
         try
         {
-
             var data = await _apiService.GetDataByDateAsync(fechaConsultar);
-
             var declaracionObj = _xmlProcessor.DeserializeXml(data);
           
             if (declaracionObj == null)
             {
-                _logger.LogError("No se pudo deserializar el XML.");
                 return BadRequest("Error al deserializar el XML.");
             }
 
   
             string datosDescomprimidos = string.Empty;
-
             if (!string.IsNullOrEmpty(declaracionObj.DatosComprimidos))
             {
-                _logger.LogInformation("Iniciando descompresión de DatosComprimidos...");
                 datosDescomprimidos = await XmlProcessor.DecompressAsync(declaracionObj.DatosComprimidos);
- 
             }
             else
             {
@@ -167,7 +156,6 @@ public class HomeController : Controller
 
             _contexto.ApiData.Add(apiData);
             await _contexto.SaveChangesAsync();
-
             _logger.LogInformation("Datos guardados exitosamente en la base de datos.");
 
 

@@ -1,4 +1,4 @@
-﻿using System;
+﻿
 using System.Xml.Serialization;
 
 [XmlRoot("CNBS-INFO-R")]

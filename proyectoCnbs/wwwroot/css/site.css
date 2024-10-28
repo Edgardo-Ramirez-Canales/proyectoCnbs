@@ -261,9 +261,6 @@ body::-webkit-scrollbar-track {
 
 
 
-/* ------- ABOUT ME -------- */
-
-
 .progress__bar {
     width: 100%;
     height: 0.2rem;
@@ -287,20 +284,17 @@ body::-webkit-scrollbar-track {
 }
 
         
-
-/* ------- FOOTER -------- */
-/* Estilos para un footer fijo */
 footer {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: #000; /* Cambia el color según prefieras */
+    background-color: #000; 
     color: #fff;
-    padding: 10px 0; /* Ajusta el padding a tu gusto */
+    padding: 10px 0;
     z-index: 10;
     text-align: center;
-    box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.3); /* Sombra opcional para darle efecto */
+    box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.3); 
 }
 
 
@@ -335,7 +329,7 @@ footer {
     color: #a3a3a3;
 }
 
-/* Background and Container */
+
 .section-bg {   
     padding: 1rem 0;
 }
@@ -369,21 +363,19 @@ footer {
 
 /* Estilos para el input */
 .form-control {
-    outline: none; /* Elimina el borde de enfoque predeterminado */
+    outline: none; 
     padding: 0.5rem 1rem;
     border-radius: 4px;
     border-color: #ff4900;
-    transition: box-shadow 0.2s; /* Transición suave para el borde */
+    transition: box-shadow 0.2s; 
 }
 
-    /* Borde anaranjado cuando el input está enfocado */
     .form-control:focus {
-        box-shadow: 0 0 0 2px #ff4900; /* Borde anaranjado al enfocarse */
+        box-shadow: 0 0 0 2px #ff4900; 
     }
 
-/* Estilos para el botón */
 .btn-primary {
-    background: #ff4900; /* Color anaranjado intenso */
+    background: #ff4900; 
     color: #ffffff;
     padding: 0.5rem 4rem;
     border: none;
@@ -394,12 +386,12 @@ footer {
     font-size: 1.2rem;
     cursor: pointer;
     outline: none;
-    transition: background-color 0.2s; /* Transición suave al pasar el puntero */
+    transition: background-color 0.2s; 
 }
 
-    /* Evitar que el botón cambie de color al pasar el puntero */
+ 
     .btn-primary:hover {
-        background: #ff4900; /* Mantiene el color anaranjado */
+        background: #ff4900; 
     }
 
 
@@ -429,19 +421,19 @@ footer {
 }
 
 .bg-orange {
-    background-color: #ff4900; /* Color anaranjado */
-    color: #ffffff; /* Color de texto blanco para que sea legible */
-    padding: 0.5rem; /* Espaciado opcional */
-    border-radius: 4px; /* Borde redondeado opcional */
+    background-color: #ff4900; 
+    color: #ffffff; 
+    padding: 0.5rem; 
+    border-radius: 4px; 
 }
 
 
 .bg-orangeBajo {
-    color: #ff4900; /* Color anaranjado */
-    padding: 0.5rem; /* Espaciado opcional */
+    color: #ff4900; 
+    padding: 0.5rem; 
 }
 
 .bg-blue {
-    color: #2b91fd; /* Color anaranjado */
-    padding: 0.5rem; /* Espaciado opcional */
+    color: #2b91fd;
+    padding: 0.5rem; 
 }
