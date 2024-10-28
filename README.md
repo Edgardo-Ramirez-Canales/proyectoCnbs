@@ -7,7 +7,7 @@
  URL: https://proyectocnbsazurev1.azurewebsites.net/
 
  ## Pasos para levantar proyecto en local 📄
--  Cambiar string de conexion del archivo appsettings.json por un server local   
+-  Cambiar string de conexion del archivo appsettings.json por un server local tomar en cuenta que se utilizo como base de datos Sql Server   
 -  Ejecutar el comando: add-migration CreacionTablaApiData (en la consola del administrador de paquetes (se ejecuta solo si no existe la carpeta migration y sus archivos))
 -  Ejecutar el comando: update-database (crea la base de datos)
 -  Ejecutar la aplicacion normalmente tomar en cuenta que se utilizo visual studio 2022
